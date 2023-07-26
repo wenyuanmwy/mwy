@@ -21,11 +21,16 @@ def index():
         time.sleep(10)
         get_url = output.json()['urls']['get']
         print(get_url)
-        get_result = requests.post(get_url,headers=headers).json()['output']
-        print(get_result)
+        r = requests.post(get_url,headers=headers).json()['output']
+        return(render_template("index.html",result=r[0]))
 
     else:
         return(render_template("index.html",result="waiting............"))
+    
+       
+if __name__ == "__main__":
+    app.run(host='127.0.0.1', port=7000)
+
     
        
 if __name__ == "__main__":
